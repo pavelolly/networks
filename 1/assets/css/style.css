@@ -1,0 +1,76 @@
+a{ text-decoration: none; color: #063667; border-bottom: 1px solid }
+a.img { border-bottom: 0px }
+.current a{ color: #434544 }
+a:hover{ border-bottom: 0 }
+/*a:visited{color: #313C9B;}*/
+.none{ display: none }
+.indent{ text-indent: -3000px }
+
+
+
+h1{
+	margin: 0 0 1em 0;
+	font: normal 2.4em/1 Georgia, "Times New Roman", Times, serif;
+	color:#454545;
+}
+	#container h1{
+		margin: 0 0 0.8em 0;
+		font: normal 2.8em/1 Georgia, "Times New Roman", Times, serif;
+	}
+
+h2{
+	margin: 1em 0 0.2em 0;
+	font: normal 2.4em Georgia, "Times New Roman", Times, serif;
+	color: #7c8e90
+}
+
+h3{
+	margin: 0.7em 0 0.4em 0;
+	font: normal 2em/1 Georgia, "Times New Roman", Times, serif;
+	color: #7c8e90;
+}
+
+p{
+	padding: 0.7em 0;
+	line-height: 130%;
+	font-size: 1.3em;
+}
+
+ul, ol{ font-size: 13px }
+
+ul{ list-style: none; margin: 5px 0 10px 0 }
+	ul li{ padding: 1px 10px 3px 2em; background: url("/img/dash.gif") no-repeat 0 0.7em;}
+	div.txt ul li { font-size: 1.4em; }
+
+ol{ margin: 10px 0 0 20px; }
+	ol li{ padding: 5px 10px 3px 5px; font-size: 1.2em; }
+
+/*--------------------------
+	news: описание Ленты новостей
+	=news
+--------------------------*/
+h2.news{
+	margin: 0.9em 0 0.4em 0;
+	font: normal 2.8em Georgia, "Times New Roman", Times, serif;
+	color:#454545;
+	}
+	
+dl.newslent{ width: 73%; font: normal 1.8em Tahoma, sans-serif; color: #434544; }
+dl.newslent dt { margin: 0 0 0.4em 0; font-weight: bold;}
+
+dl.newslent h4.date { margin: 0.6em 0 1.6em 0; font: italic 1em Georgia, "Times New Roman", Times, serif;}
+
+dt a{
+	font: normal 1.2em/1 Georgia, "Times New Roman", Times, serif;
+	color: #033566
+}
+
+
+div.pages{
+	font: normal 1.4em/1 Georgia, "Times New Roman", Times, serif;
+}
+
+div.pages a.light{
+	border: none;
+	color: #434544;
+}

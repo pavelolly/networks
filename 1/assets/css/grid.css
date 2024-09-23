@@ -1,0 +1,544 @@
+/****Описываем основные классы****/
+a {
+	font: normal 1em Georgia, "Times New Roman", Times, serif
+}
+
+.left {
+	position: relative;
+	float: left;
+	width: 60%
+}
+.right {
+	position: relative;
+	float: left
+}
+.clear_both{
+	clear:both;
+}
+
+/****Описываем классы для баннера - закругленные углы****/
+img.banner{
+ border-radius:5px; 
+ -webkit-border-radius:5px; 
+ -moz-border-radius:5px; 
+ -khtml-border-radius:5px;
+}
+
+img.banner_ege{
+ border-radius:20px; 
+ -webkit-border-radius:20px; 
+ -moz-border-radius:20px; 
+ -khtml-border-radius:20px;
+}
+
+/****Класс - рамка вокруг картинки****/
+img.framework{
+ border: 10px solid #DCDCDC;
+}
+
+
+/****Описываем header****/
+#header {
+	width: 100%;
+	padding: 10px 0 1em 0;
+	float: left;
+}
+#header img.logo {
+	position: relative;
+	float: left;
+	margin: 0 15px 0 50px;
+	width: 145px;
+	height: 143px;
+}
+#header b {
+	position: relative;
+	top: 30px;
+	font-size: 1.2em;
+	font-weight: normal;
+	color: #989a99;
+}
+
+	#header b a{
+		color: #989a99;
+		border: none;
+	}
+
+#header h1 {
+	position: relative;
+	float: left;
+	top: 32px;
+	width: 15em;
+}
+#header ul.extra_menu {
+	position: relative;
+	margin: 30px 0 0 100px;
+}
+.extra_menu li {
+	padding-left: 20px;
+	display: inline;
+	margin-right: 10px
+}
+.extra_menu li.email {
+	background: url("/img/icon_letter.gif") no-repeat 0 0.5em
+}
+.extra_menu li.sitemap {
+	padding-left: 15px;
+	background: url("/img/icon_sitemap.gif") no-repeat 0 0.5em
+}
+.extra_menu li a {
+	font-size: 0.85em;
+	color: #000
+}
+#header ul.navigation {
+	position: relative;
+	float: left;
+	height: 100px;
+	left: 185px;
+	font: normal 1.5em Georgia, "Times New Roman", Times, serif;
+	margin-top:-1em;
+}
+#header ul.navigation li {
+	margin: 0 0 0.7em 0;
+	padding: -1.5em 0 0 1.5em;
+	width: 12.7em;
+	background: url("/img/dash.gif") no-repeat 0 0.7em
+}
+#header .info {
+	position: relative;
+	top: -20px;
+	margin: 0 0 0 110px;
+}
+#header ul.info {
+	margin: 13px 0 0 108px;
+}
+#header ul.info li {
+	padding-left: 27px;
+	height: 23px;
+	font: normal 1em Georgia, "Times New Roman", Times, serif;
+}
+li.entrant {
+	background: url("/img/icon_entrant.gif") no-repeat 0.2em 0.2em
+}
+li.students {
+	background: url("/img/icon_student.gif") no-repeat 0.2em 0.2em
+}
+/****Описываем promo****/
+div.promo {
+	clear: left
+}
+div.promo .left {
+	height: 262px;
+	background: url("/img/additional_training.jpg") no-repeat;
+}
+div.promo .left ul.add_training {
+	position: relative;
+	margin: 70px 0 0 240px;
+}
+div.promo .left ul.add_training li {
+	background: url("/img/icon_play.gif") no-repeat 7.2em 0.4em;
+}
+div.promo .left ul.add_training li a {
+	font: normal 1em Arial, Tahoma, Helvetica, sans-serif;
+	color: #fff
+}
+div.promo .right {
+	width: 295px;
+	padding-left: 60px;
+}
+div.quote {
+	height: 200px;
+}
+div.promo div.quote img {
+	float: left;
+	margin: 0 15px 0 0;
+}
+div.promo div.quote blockquote {
+	color: #444645;
+	font: italic 13px Georgia, "Times New Roman", Times, serif;
+}
+.quote_l {
+	position: absolute;
+	padding: 0 0 0 45px;
+	margin: 0 0 0 -45px;
+	width: 295px;
+	background: url("/img/quote_l.gif") no-repeat 0 45px;
+}
+.quote_r {
+	background: url("/img/quote_r.gif") no-repeat 270px 130px
+}
+div.promo .right h3.name {
+	position: relative;
+	top: 200px;
+	width: 240px;
+	font-size: 17px;
+	font-style: italic;
+	color: #434542;
+}
+div.promo .right b {
+	position: absolute;
+	top: 257px;
+	margin: 0 0 0 -20px;
+	padding-bottom: 5px;
+	padding-left: 20px;
+	background: url("/img/icon_letter2.gif") no-repeat 0 0.4em
+}
+div.promo .right b a {
+	font: normal 12px Arial, Tahoma, Helvetica, sans-serif;
+}
+/****Описываем content для index.html****/
+	#content .left {
+	padding: 20px 0 0 60px;
+}
+#content .right {
+	margin: 3.7em 0 0.8em 0;
+	width: 280px;
+}
+#content .right ul {
+	margin: 1.3em 0 0 -15px;
+}
+#content .right ul li {
+	margin: 10px 0 20px 0;
+}
+ul li.open_day {
+	position: relative;
+	margin-top: 40px;
+	height: 93px;
+	width: 265px;
+	background: url("/img/open_day.jpg") no-repeat;
+}
+ul li.open_day a {
+	display: block;
+	margin-left: -15px;
+	width: 265px;
+	height: 93px;
+	border: none;
+}
+ul li.repository {
+	position: relative;
+	width: 265px;
+	height: 93px;
+	background: url("/img/repository.jpg") no-repeat;
+}
+ul li.repository a {
+	display: block;
+	margin-left: -15px;
+	width: 265px;
+	height: 93px;
+	border: none;
+}
+/****Описываем bottom для index.html****/
+	.bottom {
+	clear: left;
+}
+.bottom .left {
+	padding: 20px 0 0 60px;
+}
+.bottom .survey {
+	position: relative;
+	left: 30px;
+	padding: 5px 30px;
+	height: 155px;
+	color: #434544;
+	background: url("/img/anketa.gif") no-repeat;
+}
+.survey h3 {
+	font-style: italic
+}
+.survey p {
+	margin-top: -5px;
+	font-size: 13px;
+}
+.survey p b {
+	font-weight: normal
+}
+.survey ul {
+	margin-top: -10px;
+}
+.survey ul li {
+	float: left;
+	padding: 23px 30px 20px 40px;
+	background: url("/img/icon_survey.gif") no-repeat 0 1em;
+}
+.survey ul li a {
+	margin: 0 30px 0 0;
+	font: normal 1em Georgia, "Times New Roman", Times, serif;
+}
+.bottom .right {
+	width: 280px;
+}
+.bottom .right ul li {
+	position: relative;
+	left: -45px;
+	padding: 15px 40px 10px 45px;
+	height: 35px;
+	background: url("/img/icon_pdf.gif") no-repeat 0 1.2em;
+}
+.bottom .right ul li b {
+	font: normal 0.8em Arial, Tahoma, Helvetica, sans-serif;
+	color: #434544;
+}
+
+/****Описываем footer****/
+#footer {
+	position: relative;
+	top: 120px;
+	padding: 3em 0 4em 0;
+	clear: left;
+	height: 6em;
+	font-size: 1.2em;
+	color: #424242;
+	background: #fff;
+}
+#footer p {
+	font-size: 1em;
+	margin-top: 10px;
+}
+#footer a {
+	font: normal 12px Arial, Tahoma, Helvetica, sans-serif;
+}
+#footer .left {
+	padding-left: 60px
+}
+#footer .right {
+	width: 280px;
+}
+#footer ul li {
+	position: relative;
+	padding-left: 20px;
+	margin: -10px 0 0 -20px;
+	height: 23px;
+	font-size: 0.8em;
+}
+#footer ul.letter li {
+	background: url("/img/icon_letter2.gif") no-repeat 0 0.4em
+}
+#footer ul.map li {
+	margin-top: 0;
+	background: url("/img/icon_map.gif") no-repeat
+}
+/****Описываем стр. второго уровня****/
+#container {
+	clear: left;
+}
+#container ul.sec_navigation {
+	position: relative;
+	float: left;
+	width: 120px;
+	padding: 6em 0 0 60px;
+	font: normal 1.3em Georgia, "Times New Roman", Times, serif;
+}
+#container ul.sec_navigation li {
+	margin: 0.8em 0 0 -7px;
+	padding-left: 17px;
+
+	line-height: 1.4em;
+	background: url("/img/dash_short.gif") no-repeat 0 0.7em
+}
+#container .txt {
+	margin-left: 210px
+}
+#container .txt .float_right {
+	float: right;
+	margin: 0 3% 0 0;
+	width: 140px;
+}
+#container .txt .float_right img {
+	margin: 15px 0 0 0;
+}
+#container .txt .float_right b {
+	font: italic 1.5em/1.2 Georgia, "Times New Roman", Times, serif;
+	color: #063667;
+}
+#container p, table{ width: 75%; font-size: 1.8em; }
+#container .txt ul{ width: 75% }
+
+#container table {
+	margin: 1em 0;
+	font-size: 1.3em;
+	/*font-style: italic;*/
+	border-top: 1px solid #CCC;
+	border-bottom: 0px solid #CCC;
+}
+
+#container table thead tr{
+	border-bottom: 1px solid #CCC;
+}
+
+#container table tr td {
+	padding: 7px 10px;
+	vertical-align: middle;
+	border-bottom: 1px solid #d6e0df;
+	font-size: 1.2em;
+}
+#container table tr td a {
+	font: italic 1em Arial, Tahoma, Helvetica, sans-serif;
+}
+/****список сотрудников****/
+h3.list{margin-bottom: 15px; font-size: 1.6em;}
+
+h3.dean{ margin-top: 25px }
+
+h3.list{margin-bottom: 15px; font-size: 1.6em; }
+#container .txt ul.list, ul.dean{ width: 98% }
+ul.dean li{ padding: 0}
+.list { font-style: normal;}
+.list a, .dean a { font-style: normal; //border: none; //text-decoration: underline}
+list a:hover, .dean a:hover {//text-decoration: none}
+
+ul.list li, ul.dean li{ background: none; }
+ul.list, ul.dean{ margin: 0 0 2em 1em; padding: 0; list-style-type: none; }
+
+ul.list li { padding: 0; display: -moz-inline-stack; display: inline-block; //display: inline; }
+ul.list a, ul.list b { display: inline; word-spacing: normal; //display: inline-block; }
+ul.list a, .list b, x:-moz-any-link { display:block; }
+ul.list a, ul.list b, x:-moz-any-link, x:default { display: inline; }
+ul.list li, ul.list a, ul.list b { vertical-align: top; }
+
+ul.list li, ul.dean li { margin: 0 3% 0.4em 0; //margin: 0; width: 245px; //width: auto; }
+ul.list a, ul.list b { //margin: 0 20px 0.4em 0; //width: 245px; }
+ul.list ul { width: 100%; }
+
+img.person{
+	float: left;
+	margin: 20px 20px 0 0;
+}
+
+div.persons_desc{
+	padding: 20px 0;
+	width: 50%;
+	
+	font-style: italic;
+}
+
+div.persons_desc dl, div.persons_desc p{
+	font: italic 1.2em Georgia, "Times New Roman", Times, serif;
+}
+	div.persons_desc dl dd{ margin-top: 0.5em }
+
+	div.persons_desc b{
+		margin: 1em 0 0.2em 0;
+		font: italic 1.6em Georgia, "Times New Roman", Times, serif;
+		color:#454545;
+	}
+	div.persons_desc p{ line-height: 140% }
+
+
+
+div.persons_detail{
+	position: absolute;
+	//position:;
+	z-index: 100;
+	left: 60%;
+	width: 268px;
+	height: auto;
+	margin: 0 0 0 80px;
+
+	background: url("/img/person.gif") repeat-y;
+	
+}
+	div.top_persons{ background: url("/img/persons_top.gif") no-repeat left top }
+	div.bottom_persons{ background: url("/img/persons_bottom.gif") no-repeat bottom left }
+	
+	div.persons_detail dl{ padding: 1em 20px 20px 20px; font-size: 1.3em; width: 240px; }
+		div.persons_detail dl a{ font: normal 1em Arial, Tahoma, Helvetica, sans-serif }
+		div.persons_detail dl h3{
+			font: italic 1.2em Georgia, "Times New Roman", Times, serif;
+		}
+		div.persons_detail dl dd{ margin-bottom: 0.5em; }
+
+div.person{ position: relative; width: 70%; clear: left; top: -40px;}
+div.person, div.person ol{ width: 70%; }
+
+	div.person h3{ width: 70%; font: normal 1.8em/1 Georgia, "Times New Roman", Times, serif;}
+	div.person ul{ margin: 1.2em 0 }
+		div.person ul li{
+			margin: 0 0 0.7em 0;
+			padding: 0 0 0 2em;
+
+			background: url("/img/dash.gif") no-repeat 0 0.7em
+		}
+		
+	ul.departments li{
+		margin-bottom: 1em;
+	}
+/*--------------------------
+	bread: хлебные крошки
+--------------------------*/
+ul.breadcrumbs {
+	position: relative;
+	top: -10px;
+	left: -22px;
+	margin: 0 0 10px 0;
+}
+	ul.breadcrumbs li {
+		display: inline;
+		padding: 0;
+		margin: 0;
+		font: normal 0.9em/1.5 Arial, Tahoma, Helvetica, sans-serif;
+		color: #767676;
+		background: none;
+	}
+		ul.breadcrumbs li a {
+			font: normal 1em/1.5 Arial, Tahoma, Helvetica, sans-serif;
+			color: #767676;
+		}
+.txt ul.non{
+	margin-bottom:1.5em;
+}
+.txt ul.non li{
+	margin-top:0.4em;
+	background:none;
+	padding:0;
+}
+
+.txt ul li.non{
+	background:none;
+	font-size:0.8em;
+}
+#container table.spec{
+	width:95%;
+	display:block;
+	margin-bottom:4em;
+	max-width:900px;
+}
+#container table.spec tbody tr.hover:hover{
+	background-color:#dbeefd;
+}
+#container table.spec tr td,#container table.spec tr td a{
+	font-style:normal;
+}
+
+
+/*********Фотографии сотрудников*********/
+img.employees{
+	position: absolute;
+	float: left;
+	margin-top:-15px;
+	margin-left: -40px;
+	display: none;
+}
+
+.dean a:hover img.employees{display: block}
+.list a:hover img.employees{display: block}
+
+
+.center{
+	text-align:center;
+}
+
+
+
+/*классы для текстовых страниц*/
+.width150{
+	width:150px;
+	}
+.width100{
+	width:100px;
+	}
+.width50_center{
+	width:50px;
+	text-align:center;
+}
+.width50{
+	width:50px;
+}
