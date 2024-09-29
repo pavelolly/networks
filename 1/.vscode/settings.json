@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.txt": "plaintext",
-        "CMakeLists.txt": "cmake",
-        "CMakeCache.txt": "cmake",
-        "xiosbase": "cpp",
-        "cstring": "cpp"
-    }
-}
