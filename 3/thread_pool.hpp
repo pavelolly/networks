@@ -5,7 +5,8 @@
 #include <functional>
 #include <queue>
 #include <vector>
-#include <print>
+
+#include "c++23/print.hpp"
 
 #include "td.hpp"
 
@@ -78,7 +79,7 @@ public:
             pool[i].join();
         }
 
-        std::println("ThreadPool successfully destroyed");
+        Println("ThreadPool successfully destroyed");
     }
 
     bool Running() {
@@ -107,8 +108,8 @@ public:
     void Log(const std::format_string<Args...> fmt, Args&&... args) {
         if (b_logging.load(std::memory_order_acquire)) {
             std::lock_guard<std::mutex> lock(logging_mutex);
-            std::print("[Thread Pool: INFO] ");
-            std::println(fmt, std::forward<Args>(args)...);
+            Print("[Thread Pool: INFO] ");
+            Println(fmt, std::forward<Args>(args)...);
         }
     }
 

@@ -7,7 +7,9 @@
 #include <ws2tcpip.h>
 
 #include <string>
-#include <expected>
+
+#include "c++23/print.hpp"
+#include "c++23/expected.hpp"
 
 #pragma comment (lib, "Ws2_32.lib")
 
@@ -18,17 +20,17 @@ struct WSA {
 
     WSA() {
         if (int err = WSAStartup(MAKEWORD(2, 2), &wsadata); err != 0) {
-            std::println("WSAStartup failed with error code: {}", err);
-            std::println("Terminating...");
+            Println("WSAStartup failed with error code: {}", err);
+            Println("Terminating...");
             std::exit(1);
         }
-        std::println("WSAStartup successful");
+        Println("WSAStartup successful");
     };
     ~WSA() {
         if (int err = WSACleanup(); err == 0) {
-            std::println("WSACleanup successful");
+            Println("WSACleanup successful");
         } else {
-            std::println("WSACleanup returned non-zero: {}", err);
+            Println("WSACleanup returned non-zero: {}", err);
         }
         
     };
@@ -42,7 +44,7 @@ struct Socket {
     Socket() : Socket(INVALID_SOCKET) {}
     Socket(SOCKET s) : sock(s) {
         if (s != INVALID_SOCKET) {
-            std::println("Socket ({}) created", static_cast<std::int64_t>(sock));
+            Println("Socket ({}) created", static_cast<std::int64_t>(sock));
         }
     }
 
@@ -85,25 +87,32 @@ struct Socket {
     int close() {
         int ret_val = closesocket(sock);
         if (sock != INVALID_SOCKET) {
-            std::println("Socket ({}) closed", sock);
+            Println("Socket ({}) closed", sock);
         }
         sock = INVALID_SOCKET;
         return ret_val;
+    }
+
+    bool valid() const {
+        return sock != INVALID_SOCKET;
+    }
+
+    explicit operator bool() const {
+        return valid();
     }
 
     operator SOCKET() const {
         return sock;
     }
 
+    Expected<std::string, int> RecieveData() const;
+    Expected<int, int> SendData(const std::string &data) const;
 private:
     SOCKET sock;
     bool b_is_blocking = true;
 };
 
 extern WSA wsa;
-
-std::expected<std::string, int> RecieveData(const Socket &socket);
-std::expected<int, int> SendData(const Socket &socket, const std::string &data);
 
 Socket CreateListenSocket();
 Socket CreateConnectSocket();

@@ -1,9 +1,9 @@
 #include <string>
-#include <print>
 #include <list>
 #include <thread>
 #include <csignal>
 
+#include "c++23/print.hpp"
 #include "wsa.hpp"
 #include "thread_pool.hpp"
 
@@ -61,13 +61,13 @@ void SendEveryoneExcept(SOCKET sender, const std::string &message) {
             continue;
         }
 
-        auto send_res = SendData(reciever, message);
+        auto send_res = reciever.SendData(message);
         if (!send_res && send_res.error() != WSAEWOULDBLOCK) {
-            std::println("Failed to send message to socket {}, error code: {}, {}", static_cast<std::int64_t>(SOCKET(reciever)), wsa.GetLastError(), wsa.GetLastErrorAsString());
+            Println("Failed to send message to socket {}, error code: {}, {}", static_cast<std::int64_t>(SOCKET(reciever)), wsa.GetLastError(), wsa.GetLastErrorAsString());
             Socket popped = PopSocket(i);
-            std::println("Popped socket {}", static_cast<std::int64_t>(SOCKET(popped)));
+            Println("Popped socket {}", static_cast<std::int64_t>(SOCKET(popped)));
         } else if (send_res) {
-            std::println("Sent {} bytes", send_res.value());
+            Println("Sent {} bytes", send_res.value());
         } else {} // WSAEWOULDBLOCK here
     }
 }
@@ -79,15 +79,15 @@ void ManageSockets() {
         for (std::size_t i = 0; i < GetClientsCount(); ++i) {
             const Socket &socket = GetClientSocket(i);
 
-            auto recv_data = RecieveData(socket);
+            auto recv_data = socket.RecieveData();
 
             if (recv_data) {
                 pool.NewTask(SendEveryoneExcept, SOCKET(socket), std::move(recv_data.value()));
                 // SendEveryoneExcept(socket, recv_data.value());
             } else if (recv_data.error() != WSAEWOULDBLOCK) {
-                std::println("Failed to recieve from socket {}, error code: {}: {}", static_cast<std::int64_t>(socket), wsa.GetLastError(), wsa.GetLastErrorAsString());
+                Println("Failed to recieve from socket {}, error code: {}: {}", static_cast<std::int64_t>(socket), wsa.GetLastError(), wsa.GetLastErrorAsString());
                 Socket popped = PopSocket(i);
-                std::println("Popped socket {}", static_cast<std::int64_t>(SOCKET(popped)));
+                Println("Popped socket {}", static_cast<std::int64_t>(SOCKET(popped)));
             }
         }
     }
@@ -105,34 +105,34 @@ int main() {
     pool.SetLoggingFlag(false);
 
     Socket listen_socket = CreateListenSocket();
-    if (listen_socket == INVALID_SOCKET) {
-        std::println("Could not create listen socket, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
+    if (!listen_socket.valid()) {
+        Println("Could not create listen socket, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
         return 1;
     }
 
     if (int err = listen_socket.SetBlocking(false); err != 0) {
-        std::println("ioctlsocket failed, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
+        Println("ioctlsocket failed, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
         return 1;
     }
 
-    std::println(" ----- SERVER ----- ");
-    std::println();
+    Println(" ----- SERVER ----- ");
+    Println();
 
     pool.NewTask(ManageSockets);
-    std::println("Waiting for connections...");
+    Println("Waiting for connections...");
     while (true) {
         Socket client_socket = accept(listen_socket, NULL, NULL);
-        if (client_socket == INVALID_SOCKET) {
+        if (!client_socket.valid()) {
             if (wsa.GetLastError() != WSAEWOULDBLOCK) {
-                std::println("accept returned INVALID_SOCKET, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
+                Println("accept returned invalid socket, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
             }
             continue;
         }
 
-        std::println("Connected socket {}", SOCKET(client_socket));
+        Println("Connected socket {}", SOCKET(client_socket));
 
         AddSocket(std::move(client_socket));
-        std::println("All connected sockets: {}", SocketsAsString());
+        Println("All connected sockets: {}", SocketsAsString());
     }       
 
     return 0;

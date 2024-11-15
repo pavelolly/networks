@@ -1,4 +1,4 @@
-#include <print>
+#include "c++23/print.hpp"
 
 #include "wsa.hpp"
 
@@ -25,39 +25,39 @@ std::string WSA::GetLastErrorAsString() {
     return ErrorCodeToString(wsa.GetLastError());
 }
 
-std::expected<std::string, int> RecieveData(const Socket &socket) {
+Expected<std::string, int> Socket::RecieveData() const {
     const int recvbuf_len = 1024;
     char recvbuf[recvbuf_len] = {0};
     
     int bytes_recieved = 0;
     std::string recv_data;
     do {
-        bytes_recieved = recv(socket, recvbuf, recvbuf_len, 0);
+        bytes_recieved = recv(sock, recvbuf, recvbuf_len, 0);
 
         if (bytes_recieved > 0) {
-            std::println("Recieved {} bytes", bytes_recieved);
+            Println("Recieved {} bytes", bytes_recieved);
             recv_data.append(recvbuf, recvbuf + bytes_recieved);
         } else if (bytes_recieved == 0) {
-            std::println("Recieve success");
+            Println("Recieve success");
         } else {
             if (wsa.GetLastError() == WSAEWOULDBLOCK && !recv_data.empty()) {
                 break;
             }
             
-            return std::unexpected(wsa.GetLastError());
+            return Unexpected(wsa.GetLastError());
         }
     } while (bytes_recieved > 0);
 
     return std::move(recv_data);
 }
 
-std::expected<int, int> SendData(const Socket &socket, const std::string &data) {
-    int bytes_sent = send(socket, data.c_str(), static_cast<int>(data.size()), 0); 
+Expected<int, int> Socket::SendData(const std::string &data) const {
+    int bytes_sent = send(sock, data.c_str(), static_cast<int>(data.size()), 0); 
     if (bytes_sent == SOCKET_ERROR) {
-        return std::unexpected(wsa.GetLastError());
+        return Unexpected(wsa.GetLastError());
     }
 
-    std::println("Bytes sent: {}", bytes_sent);
+    Println("Bytes sent: {}", bytes_sent);
 
     return bytes_sent;
 }
@@ -71,22 +71,22 @@ Socket CreateListenSocket() {
     hints.ai_flags = AI_PASSIVE;
 
     Socket listen_socket = socket(hints.ai_family, hints.ai_socktype, hints.ai_protocol);
-    if (listen_socket == INVALID_SOCKET) {
-        std::println("Could not create socket, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
+    if (!listen_socket.valid()) {
+        Println("Could not create socket, error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
         return INVALID_SOCKET;
     }
 
     // Resolve address
     struct addrinfo *addrinfo = nullptr;
     if (int err = getaddrinfo(NULL, PORT, &hints, &addrinfo); err != 0) {
-        std::println("getaddrinfo failed with error code: {}", err);
+        Println("getaddrinfo failed with error code: {}", err);
         freeaddrinfo(addrinfo);
         return INVALID_SOCKET;
     }
 
     // Bind socket to address
     if (bind(listen_socket, addrinfo->ai_addr, static_cast<int>(addrinfo->ai_addrlen)) == SOCKET_ERROR) {
-        std::println("bind failed with error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
+        Println("bind failed with error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
         freeaddrinfo(addrinfo);
         return INVALID_SOCKET;
     }
@@ -95,7 +95,7 @@ Socket CreateListenSocket() {
     freeaddrinfo(addrinfo);
 
     if (listen(listen_socket, SOMAXCONN) == SOCKET_ERROR) {
-        std::println("listen failed with error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
+        Println("listen failed with error code: {}: {}", wsa.GetLastError(), wsa.GetLastErrorAsString());
         return INVALID_SOCKET;
     }
 
@@ -112,7 +112,7 @@ Socket CreateConnectSocket() {
     // Resolve address
     struct addrinfo *addrinfo = nullptr;
     if (int err = getaddrinfo(NULL, PORT, &hints, &addrinfo); err != 0) {
-        std::println("getaddrinfo failed with error code: {}", err);
+        Println("getaddrinfo failed with error code: {}", err);
         freeaddrinfo(addrinfo);
         return INVALID_SOCKET;
     }
@@ -122,7 +122,7 @@ Socket CreateConnectSocket() {
     for (struct addrinfo *p = addrinfo; p != nullptr; p = p->ai_next) {
         // Create socket
         connect_socket = socket(p->ai_family, p->ai_socktype, p->ai_protocol);
-        if (connect_socket == INVALID_SOCKET) {
+        if (!connect_socket.valid()) {
             freeaddrinfo(addrinfo);
             return INVALID_SOCKET;
         }
